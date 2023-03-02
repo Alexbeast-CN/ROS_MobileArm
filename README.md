@@ -11,6 +11,7 @@ This is a DriveDream internship project. The robot is a 4-wheel differential dri
 **Tim:**
 * [x] Create the framework of the repo. 
 * [x] Add template files.
+* [ ] Unify the data type.
 
 **Keyu Ge:**
 
