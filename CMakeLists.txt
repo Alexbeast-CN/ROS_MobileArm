@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ROS_MobileArm)
+project(ros_mobile_arm)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -33,7 +33,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch worlds
+  DIRECTORY config robot_description launch worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
