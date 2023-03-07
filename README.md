@@ -11,12 +11,12 @@ This is a DriveDream internship project. The robot is a 4-wheel differential dri
 **Tim:**
 * [x] Create the framework of the repo. 
 * [x] Add template files.
-* [ ] Unify the data type.
+* [x] Unify the data type.
 
 **Keyu Ge:**
 
 * [ ] Learn from [champ](https://github.com/chvmp/champ), which is a good example of how a ROS project should be.
-* [ ] Create a folder named `kinematics` and do the following tasks (This can hold on):
+* [ ] Create a folder named `kinematics` and do the following tasks:
     * [ ] Build the kinematics model of a 4-wheel differential driven vehicel.
 
 **Yijie Gong:**
