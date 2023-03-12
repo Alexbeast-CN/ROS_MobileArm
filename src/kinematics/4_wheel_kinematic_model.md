@@ -52,6 +52,7 @@ Eqn.6 can extend to Eqn.7
 $$ \omega=(u_L-u_R)\frac{cos\alpha_{LB}}{2R_{LB}}=(u_L-u_R)\frac{(\frac{b}{2}-\delta y)}{2[(\frac{b}{2}-\delta y)^2+(\frac{a}{2}-\delta x)^2]} \tag{7}$$
 
 $$ \beta=(\frac{(\frac{b}{2}-\delta y)}{2[(\frac{b}{2}-\delta y)^2+(\frac{a}{2}-\delta x)^2]})^{-1} \tag{8}$$
+
 $$ \omega=\frac{(u_L-u_R)}{\beta} \tag{9}$$
 
 For the parameter $\beta$, $a$ and $b$ are the geometric robot parameters but for $\delta x$ and $\delta y$ we need extra work. It is found by rotating the robot in place at different speeds, but making sure that $u_L=-u_R$ . Then least squares minimization of the error is used to find $\beta$.
