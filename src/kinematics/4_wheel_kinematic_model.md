@@ -59,21 +59,25 @@ For the parameter $\beta$, $a$ and $b$ are the geometric robot parameters but fo
 For the Forward Kinematics:
 
 $$ \begin{bmatrix}
-    v_c\\ \omega
+    v_c\\ 
+    \omega
 \end{bmatrix}=\begin{bmatrix}
     \frac{1}{2} & \frac{1}{2}\\
     \frac{1}{\beta} & \frac{1}{\beta}\\
 \end{bmatrix} \begin{bmatrix}
-    u_L\\ u_R
+    u_L\\ 
+    u_R
 \end{bmatrix} \tag{10}$$
 
 For the Inverse Kinematics:
 
 $$ \begin{bmatrix}
-    u_L\\ u_R
+    u_L\\ 
+    u_R
 \end{bmatrix}=\begin{bmatrix}
     1 & \frac{\beta}{2}\\
     1 & -\frac{\beta}{2}\\
 \end{bmatrix} \begin{bmatrix}
-    v_c\\ \omega
+    v_c\\ 
+    \omega
 \end{bmatrix} \tag{11}$$
