@@ -10,6 +10,7 @@ For a 4-wheel differential driven robot, there are four motors control each whee
 To describe the robot motion, a fixed world coordinate frame 
 
 $$ \begin{bmatrix} x_g & y_g & \theta_g \end{bmatrix}^T \tag{1} $$
+
 and a local coordinate frame with the robot motion whose origin is at the **center of mass (COM)** of the robot are set.
 
 $$ \begin{bmatrix} x_l & y_l & \theta_l \end{bmatrix}^T \tag{2} $$ 
@@ -18,9 +19,19 @@ Here $x$ and $y$ represent the coordinates of the robot's position in the coordi
 
 The relationship between these two frame showns below:
 
-$$ \begin{bmatrix} \dot{x_g} \\ \dot{y_g} \\ \dot{\theta_g} \end{bmatrix} = \begin{bmatrix} cos\theta &-sin\theta & 0 \\ sin\theta & cos\theta & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \dot{x_l} \\ \dot{y_l} \\ \dot{\theta_l} \end{bmatrix} \tag{3} $$ 
+$$ \begin{bmatrix} \dot{x_g} \\ 
+\dot{y_g} \\ 
+\dot{\theta_g} 
+\end{bmatrix} = \begin{bmatrix} cos\theta & -sin\theta & 0 \\ 
+sin\theta & cos\theta & 0 \\ 
+0 & 0 & 1 \end{bmatrix} 
+\begin{bmatrix} \dot{x_l} \\ 
+\dot{y_l} \\ 
+\dot{\theta_l} 
+\end{bmatrix} \tag{3} $$ 
 
 ![picture1](./4-wheel.png)
+
 Here is a schematic of 4-wheel robot. 
 
 Although there are four drive wheels in this model, it can be simplified to a two-wheel drive-like model for the purpose of analysis.
