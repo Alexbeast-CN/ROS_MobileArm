@@ -23,7 +23,7 @@
         <color rgba="1 0 0 1"/>
     </material>
 
-    <!-- BASIC LINK -->
+    <!-- BASIC LINK -->s
     <link name = "base_link">
 
     </link>
@@ -53,6 +53,8 @@
             <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
+
+
 
     <!-- LEFT BACK LINK -->
     <joint name = "left_wheel_joint_back" type = "continuous">
@@ -155,4 +157,6 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+
+    
 </robot>
