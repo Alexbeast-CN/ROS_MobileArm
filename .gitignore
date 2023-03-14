@@ -1,6 +1,6 @@
 # ROS stuff
 devel/
-logs/
+log/
 build/
 bin/
 lib/

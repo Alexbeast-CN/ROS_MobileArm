@@ -1,0 +1,1 @@
+/home/keyu/Github/ROS_MobileArm/src/test_bot/build/test_bot/ament_cmake_environment_hooks/local_setup.bash
