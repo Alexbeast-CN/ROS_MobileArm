@@ -82,3 +82,7 @@ $$ \begin{bmatrix}
     v_c\\ 
     \omega
 \end{bmatrix} \tag{11}$$
+
+## References:
+- "Four-wheel drive (SSMR) mobile robot motion model and application analysis" https://mp.weixin.qq.com/s/Fzrpn5_3TB6apqG2Ds1v5Q
+- Dogru, S., & Marques, L. (2017, April). Estimation of rotational speeds of skid-steered wheeled mobile robots using an improved kinematic model. In 2017 IEEE international conference on autonomous robot systems and competitions (ICARSC) (pp. 73-78). IEEE.
