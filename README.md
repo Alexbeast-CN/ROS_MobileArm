@@ -16,15 +16,16 @@ This is a DriveDream internship project. The robot is a 4-wheel differential dri
 **Keyu Ge:**
 
 * [ ] Learn from [champ](https://github.com/chvmp/champ), which is a good example of how a ROS project should be.
-* [ ] Create a folder named `kinematics` and do the following tasks:
+* [ ] Create a package named `kinematics` and do the following tasks:
     * [ ] Build the kinematics model of a 4-wheel differential driven vehicel.
 
 **Yijie Gong:**
 
 * [ ] Study ROS2.
-* [ ] Create a folder named `robot_description`  and do the following tasks:
-    * [ ] Write/build a 4-wheel_robot_model.urdf (or in .xacro, chose one).
-    * [ ] Display the robot in rviz.
+* [x] Create a package named `robot_description`  and do the following tasks:
+    * [x] Write/build a 4-wheel_robot_model.urdf (or in .xacro, chose one).
+    * [x] Display the robot in rviz and gazebo.
+* [ ] Read the documents and run some examples [nav2](https://www.bing.com/search?q=nav2&qs=n&form=QBRE&sp=-1&lq=0&pq=nav2&sc=10-4&sk=&cvid=9BBF6F736A604C11ABCCC35839C5A6D4&ghsh=0&ghacc=0&ghpl=) and [moveit2](https://moveit.ros.org/install-moveit2/source/)
 
 ## Log
 
