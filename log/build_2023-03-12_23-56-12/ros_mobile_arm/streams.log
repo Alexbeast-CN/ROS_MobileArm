@@ -1,0 +1,32 @@
+[0.012s] Invoking command in '/home/yijie/ros2_ws/src/ros_mobile_arm/build/ros_mobile_arm': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/yijie/ros2_ws/src/ros_mobile_arm/src -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/yijie/ros2_ws/src/ros_mobile_arm/install/ros_mobile_arm
+[0.218s] -- The C compiler identification is GNU 9.4.0
+[0.440s] -- The CXX compiler identification is GNU 9.4.0
+[0.450s] -- Check for working C compiler: /usr/bin/cc
+[0.521s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.523s] -- Detecting C compiler ABI info
+[0.591s] -- Detecting C compiler ABI info - done
+[0.599s] -- Detecting C compile features
+[0.600s] -- Detecting C compile features - done
+[0.604s] -- Check for working CXX compiler: /usr/bin/c++
+[0.682s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.683s] -- Detecting CXX compiler ABI info
+[0.764s] -- Detecting CXX compiler ABI info - done
+[0.772s] -- Detecting CXX compile features
+[0.772s] -- Detecting CXX compile features - done
+[0.776s] -- Found ament_cmake: 0.9.11 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.798s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.798s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.959s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.991s] -- Found ament_lint_auto: 0.9.7 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.043s] CMake Error at /opt/ros/foxy/share/ament_cmake_core/cmake/core/ament_package_xml.cmake:53 (message):
+[1.043s]   ament_package_xml() package name 'ros_mobile_arm' in '/package.xml' does
+[1.043s]   not match current PROJECT_NAME 'src'.  You must call project() with the
+[1.043s]   same package name before.
+[1.043s] Call Stack (most recent call first):
+[1.043s]   /opt/ros/foxy/share/ament_lint_auto/cmake/ament_lint_auto_find_test_dependencies.cmake:31 (ament_package_xml)
+[1.043s]   CMakeLists.txt:32 (ament_lint_auto_find_test_dependencies)
+[1.044s] 
+[1.044s] 
+[1.044s] -- Configuring incomplete, errors occurred!
+[1.044s] See also "/home/yijie/ros2_ws/src/ros_mobile_arm/build/ros_mobile_arm/CMakeFiles/CMakeOutput.log".
+[1.048s] Invoked command in '/home/yijie/ros2_ws/src/ros_mobile_arm/build/ros_mobile_arm' returned '1': CMAKE_PREFIX_PATH=/opt/ros/foxy /usr/bin/cmake /home/yijie/ros2_ws/src/ros_mobile_arm/src -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/yijie/ros2_ws/src/ros_mobile_arm/install/ros_mobile_arm
