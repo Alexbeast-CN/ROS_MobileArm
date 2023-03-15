@@ -125,40 +125,12 @@
         
     </gazebo>
 
-<gazebo>
-  <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
-    <ros>
-      <namespace>/demo</namespace>
-    </ros>
-
-    <!-- wheels -->
-    <left_joint>drivewhl_l_back</left_joint>
-    <right_joint>drivewhl_r_back</right_joint>
-
-    <!-- kinematics -->
-    <wheel_separation>0.4</wheel_separation>
-    <wheel_diameter>0.2</wheel_diameter>
-
-    <!-- limits -->
-    <max_wheel_torque>20</max_wheel_torque>
-    <max_wheel_acceleration>1.0</max_wheel_acceleration>
-
-    <!-- output -->
-    <publish_odom>true</publish_odom>
-    <publish_odom_tf>false</publish_odom_tf>
-    <publish_wheel_tf>true</publish_wheel_tf>
-
-    <odometry_frame>odom</odometry_frame>
-    <robot_base_frame>base_link</robot_base_frame>
-  </plugin>
-</gazebo>
-
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
   </hardware>
  
-  <joint name="drivewhl_l_front">
+  <joint name="drivewhl_l_front_joint">
     <command_interface name="velocity">
       <param name="min">-1</param>
       <param name="max">1</param>
@@ -166,7 +138,7 @@
     <state_interface name="position"/>
     <state_interface name="velocity"/>
   </joint>
-  <joint name="drivewhl_r_front">
+  <joint name="drivewhl_r_front_joint">
     <command_interface name="velocity">
       <param name="min">-1</param>
       <param name="max">1</param>
@@ -174,7 +146,7 @@
     <state_interface name="position"/>
     <state_interface name="velocity"/>
   </joint>
-  <joint name="drivewhl_l_back">
+  <joint name="drivewhl_l_back_joint">
     <command_interface name="velocity">
       <param name="min">-1</param>
       <param name="max">1</param>
@@ -182,7 +154,7 @@
     <state_interface name="position"/>
     <state_interface name="velocity"/>
   </joint>
-  <joint name="drivewhl_r_back">
+  <joint name="drivewhl_r_back_joint">
     <command_interface name="velocity">
       <param name="min">-1</param>
       <param name="max">1</param>
@@ -195,7 +167,7 @@
 <gazebo>
   <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
     <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
-    <parameters>/home/Github/ROS_MobileArm/src/test_bot/config/diff_drive_controller.yaml</parameters>
+    <parameters>$(find test_bot)/config/test.yaml</parameters>
   </plugin>
 </gazebo>
 
