@@ -104,23 +104,23 @@
         <mu2 value="0.001"/>
     </gazebo>
 
-    <gazebo reference="drivewhl_l_back">
+    <gazebo reference="drivewhl_l_back_joint">
         <material>Gazebo/Orange</material>
         <mu1 value="0.001"/>
         <mu2 value="0.001"/>
     </gazebo>
 
-    <gazebo reference="drivewhl_r_back">
+    <gazebo reference="drivewhl_r_back_joint">
         <material>Gazebo/Orange</material>
         
     </gazebo>
 
-    <gazebo reference="drivewhl_l_front">
+    <gazebo reference="drivewhl_l_front_joint">
         <material>Gazebo/Orange</material>
         
     </gazebo>
 
-    <gazebo reference="drivewhl_r_front">
+    <gazebo reference="drivewhl_r_front_joint">
         <material>Gazebo/Orange</material>
         
     </gazebo>
