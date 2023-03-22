@@ -7,6 +7,7 @@ def generate_launch_description():
     pkg_share = launch_ros.substitutions.FindPackageShare(package='test_bot').find('test_bot')
     default_model_path = os.path.join(pkg_share, 'src/test_bot.urdf')
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
+    world_path=os.path.join(pkg_share, 'world/empty_world.sdf'),
 
     robot_state_publisher_node = launch_ros.actions.Node(
         package='robot_state_publisher',
@@ -35,11 +36,10 @@ def generate_launch_description():
         output='screen'
     )
 
-    # diff_driven_controller_node = launch_ros.actions.Node(
-    #     package='controller_manager',
-    #     executable='spawner',
-    #     arguments=['diff_drive_controller'],
-    #     output='screen', 
+    # test_control = launch_ros.actions.Node(
+    #     package='test_control',
+    #     executable='test_control',
+    #     output='screen'
     # )
 
     return launch.LaunchDescription([
@@ -48,14 +48,19 @@ def generate_launch_description():
                                             description='Absolute path to robot urdf file'),
         launch.actions.DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                             description='Absolute path to rviz config file'),
-        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so'], output='screen'),
+        
+        launch.actions.ExecuteProcess(
+        cmd=['ros2', 'control', 'load_controller', '--set-state', 'start','joint_state_broadcaster'],
+        output='screen'
+        ),
         launch.actions.ExecuteProcess(
             cmd=['ros2', 'control', 'load_controller', '--set-state', 'start', 'mobile_base_controller'],
             output='screen'
         ),
-        # diff_driven_controller_node,
         joint_state_publisher_node,
         robot_state_publisher_node,
+        launch.actions.ExecuteProcess(cmd=['gazebo', '--verbose', '-s', 'libgazebo_ros_init.so', '-s', 'libgazebo_ros_factory.so', world_path], output='screen'),
         spawn_entity,
-        rviz_node   
+        rviz_node,
+        # test_control
     ])

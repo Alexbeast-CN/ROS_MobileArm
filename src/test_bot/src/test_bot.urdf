@@ -17,7 +17,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       <mass value="${m}"/>
-      <inertia ixx="${(m/12) * (h*h + d*d)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (w*w + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + h*h)}"/>
+      <inertia ixx="${(m/12) * (h*h + w*w)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (h*h + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + d*d)}"/>
     </inertial>
   </xacro:macro>
 
@@ -25,7 +25,7 @@
     <inertial>
       <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
       <mass value="${m}"/>
-      <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (3*r*r + h*h)}" iyz = "0" izz="${(m/2) * (r*r)}"/>
+      <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (6*r*r)}" iyz = "0" izz="${(m/12) * (3*r*r + h*h)}"/>
     </inertial>
   </xacro:macro>
 
@@ -46,7 +46,7 @@
       </geometry>
     </collision>
 
-    <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>
+    <xacro:box_inertia m="10" w="${base_width}" d="${base_length}" h="${base_height}"/>
   </link>
 
     <!-- Robot Footprint -->
@@ -78,7 +78,7 @@
       </geometry>
     </collision>
 
-  <xacro:cylinder_inertia m="0.5" r="${wheel_radius}" h="${wheel_width}"/>
+    <xacro:cylinder_inertia m="0.5" r="${wheel_radius}" h="${wheel_width}"/>
     </link>
 
     <joint name="${prefix}_joint" type="continuous">
@@ -94,7 +94,7 @@
   <xacro:wheel prefix="drivewhl_l_front" x_reflect="1" y_reflect="1" />
   <xacro:wheel prefix="drivewhl_r_front" x_reflect="1" y_reflect="-1" />
 
-<gazebo reference="base_link">
+<!-- <gazebo reference="base_link">
         <material>Gazebo/Green</material>
     </gazebo>
 
@@ -112,18 +112,21 @@
 
     <gazebo reference="drivewhl_r_back_joint">
         <material>Gazebo/Orange</material>
-        
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
     </gazebo>
 
     <gazebo reference="drivewhl_l_front_joint">
         <material>Gazebo/Orange</material>
-        
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
     </gazebo>
 
     <gazebo reference="drivewhl_r_front_joint">
         <material>Gazebo/Orange</material>
-        
-    </gazebo>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo> -->
 
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
