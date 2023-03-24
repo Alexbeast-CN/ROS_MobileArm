@@ -1,22 +1,29 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>test_bot</name>
+  <name>path_plot</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="1059684862@qq.com">keyu</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <exec_depend>joint_state_publisher</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
-  <exec_depend>rviz</exec_depend>
-  <exec_depend>xacro</exec_depend>
-  <exec_depend>robot_localization</exec_depend>
-  <!-- <exec_depend>test_control</exec_depend> -->
-
+  <depend>ros2console</depend>
+  <depend>nav_msgs</depend>
+  <depend>std_msgs</depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+
+
+  <!-- <depend>rclcpp</depend>
+  <depend>tf2_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend> -->
+
+  <exec_depend>rclcpp</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

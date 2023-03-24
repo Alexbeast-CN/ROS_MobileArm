@@ -30,16 +30,16 @@
           </geometry>
           <surface>
             <friction>
-              <bullet>
+              <ode>
                 <mu>100</mu>
                 <mu2>50</mu2>
-              </bullet>
+              </ode>
               <torsional>
-                <bullet/>
+                <ode/>
               </torsional>
             </friction>
             <contact>
-              <bullet/>
+              <ode/>
             </contact>
             <bounce/>
           </surface>
@@ -67,8 +67,8 @@
     </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type='adiabatic'/>
-    <physics type='bullet'>
+
+    <physics type='ode'>
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
       <real_time_update_rate>1000</real_time_update_rate>
@@ -78,14 +78,14 @@
       <background>0.7 0.7 0.7 1</background>
       <shadows>1</shadows>
     </scene>
-    <wind/>
+
     <state world_name='default'>
       <sim_time>0 0</sim_time>
       <real_time>0 0</real_time>
       <wall_time>1626668720 808592627</wall_time>
       <iterations>0</iterations>
       <model name='ground_plane'>
-        <pose>0 0 0 0 -0 0</pose>
+        <pose>0 0 0 0 -1 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>0 0 0 0 -0 0</pose>
@@ -94,26 +94,7 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='unit_box'>
-        <pose>1.51272 -0.181418 0.499995 0 1e-05 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>1.51272 -0.181418 0.499995 0 1e-05 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.010615 -0.006191 -9.78231 0.012424 0.021225 1.8e-05</acceleration>
-          <wrench>0.010615 -0.006191 -9.78231 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='unit_sphere'>
-        <pose>-0.725833 1.36206 0.5 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-0.944955 1.09802 0.5 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
+      
       <light name='sun'>
         <pose>0 0 10 0 -0 0</pose>
       </light>

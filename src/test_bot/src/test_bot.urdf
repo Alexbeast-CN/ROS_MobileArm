@@ -17,7 +17,8 @@
     <inertial>
       <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
       <mass value="${m}"/>
-      <inertia ixx="${(m/12) * (h*h + w*w)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (h*h + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + d*d)}"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
+      <!-- <inertia ixx="${(m/12) * (h*h + w*w)}" ixy="0.0" ixz="0.0" iyy="${(m/12) * (h*h + d*d)}" iyz="0.0" izz="${(m/12) * (w*w + d*d)}"/> -->
     </inertial>
   </xacro:macro>
 
@@ -25,7 +26,8 @@
     <inertial>
       <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
       <mass value="${m}"/>
-      <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (6*r*r)}" iyz = "0" izz="${(m/12) * (3*r*r + h*h)}"/>
+      <!-- <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy = "0" ixz = "0" iyy="${(m/12) * (6*r*r)}" iyz = "0" izz="${(m/12) * (3*r*r + h*h)}"/> -->
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0" />
     </inertial>
   </xacro:macro>
 
@@ -46,7 +48,7 @@
       </geometry>
     </collision>
 
-    <xacro:box_inertia m="10" w="${base_width}" d="${base_length}" h="${base_height}"/>
+    <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>
   </link>
 
     <!-- Robot Footprint -->
@@ -94,6 +96,7 @@
   <xacro:wheel prefix="drivewhl_l_front" x_reflect="1" y_reflect="1" />
   <xacro:wheel prefix="drivewhl_r_front" x_reflect="1" y_reflect="-1" />
 
+
 <!-- <gazebo reference="base_link">
         <material>Gazebo/Green</material>
     </gazebo>
@@ -127,6 +130,15 @@
         <mu1 value="0.001"/>
         <mu2 value="0.001"/>
     </gazebo> -->
+
+  <!-- Map Frame -->
+  <link name="map"/>
+
+  <joint name="map_joint" type="fixed">
+    <parent link="map"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
 
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
