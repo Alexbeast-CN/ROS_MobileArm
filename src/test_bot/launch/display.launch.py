@@ -36,8 +36,6 @@ def generate_launch_description():
         output='screen'
     )
 
-    
-
     return launch.LaunchDescription([
 
         launch.actions.DeclareLaunchArgument(name='model', default_value=default_model_path,
@@ -56,6 +54,5 @@ def generate_launch_description():
         joint_state_publisher_node,
         robot_state_publisher_node,
         spawn_entity,
-
         rviz_node
     ])

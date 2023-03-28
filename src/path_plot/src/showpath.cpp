@@ -70,6 +70,7 @@
 
 
 #include <chrono>
+#include <memory>
 #include "rclcpp/rclcpp.hpp"
 #include "tf2_ros/transform_listener.h"
 #include "geometry_msgs/msg/point.hpp"
