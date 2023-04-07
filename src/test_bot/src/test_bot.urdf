@@ -98,14 +98,14 @@
   <xacro:wheel prefix="drivewhl_l_front" x_reflect="1" y_reflect="1" />
   <xacro:wheel prefix="drivewhl_r_front" x_reflect="1" y_reflect="-1" />
 
-  <!-- Map Frame -->
+  <!-- Map Frame
   <link name="map"/>
 
   <joint name="map_joint" type="fixed">
     <parent link="map"/>
     <child link="base_link"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  </joint> -->
 
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
@@ -153,4 +153,125 @@
   </plugin>
 </gazebo>
 
+<link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+  </visual>
+
+  <collision>
+    <geometry>
+      <box size="0.1 0.1 0.1"/>
+    </geometry>
+  </collision>
+
+  <xacro:box_inertia m="0.1" w="0.1" d="0.1" h="0.1"/>
+</link>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin xyz="0 0 0.01"/>
+</joint>
+
+ <gazebo reference="imu_link">
+  <sensor name="imu_sensor" type="imu">
+   <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+      <ros>
+        <namespace>/demo</namespace>
+        <remapping>~/out:=imu</remapping>
+      </ros>
+      <initial_orientation_as_reference>false</initial_orientation_as_reference>
+    </plugin>
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <imu>
+      <angular_velocity>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>2e-4</stddev>
+            <bias_mean>0.0000075</bias_mean>
+            <bias_stddev>0.0000008</bias_stddev>
+          </noise>
+        </z>
+      </angular_velocity>
+      <linear_acceleration>
+        <x>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </noise>
+        </x>
+        <y>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </noise>
+        </y>
+        <z>
+          <noise type="gaussian">
+            <mean>0.0</mean>
+            <stddev>1.7e-2</stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
+          </noise>
+        </z>
+      </linear_acceleration>
+    </imu>
+  </sensor>
+</gazebo>
+
+<gazebo>
+  <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
+    <ros>
+      <namespace>/demo</namespace>
+    </ros>
+
+    <!-- wheels -->
+    <left_joint>drivewhl_l_joint</left_joint>
+    <right_joint>drivewhl_r_joint</right_joint>
+
+    <!-- kinematics -->
+    <wheel_separation>0.4</wheel_separation>
+    <wheel_diameter>0.2</wheel_diameter>
+
+    <!-- limits -->
+    <max_wheel_torque>20</max_wheel_torque>
+    <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+    <!-- output -->
+    <publish_odom>true</publish_odom>
+    <publish_odom_tf>false</publish_odom_tf>
+    <publish_wheel_tf>true</publish_wheel_tf>
+
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_link</robot_base_frame>
+  </plugin>
+</gazebo>
+
 </robot>
+
+

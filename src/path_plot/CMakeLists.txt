@@ -16,19 +16,24 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 # find dependencies
+find_package(rclcpp REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(nav_msgs REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 add_executable(showpath src/showpath.cpp)
-ament_target_dependencies(showpath rclcpp tf2 tf2_ros geometry_msgs visualization_msgs)
+add_executable(tf_odom src/tf_odom.cpp)
+ament_target_dependencies(showpath rclcpp tf2 tf2_ros geometry_msgs visualization_msgs nav_msgs)
+ament_target_dependencies(tf_odom rclcpp tf2 tf2_ros geometry_msgs nav_msgs sensor_msgs)
 
-install(TARGETS showpath
+
+install(TARGETS showpath tf_odom
   DESTINATION lib/${PROJECT_NAME})
 
 # uncomment the following section in order to fill in
