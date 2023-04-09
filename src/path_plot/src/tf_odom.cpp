@@ -18,20 +18,22 @@ using namespace std::chrono_literals;
   double y = 0.0;
   double left_wheel_est_vel = 0.0;
   double right_wheel_est_vel = 0.0;
+  double vx = 0.0;
+  double vy = 0.0;
   double vth = 0.0;
 
-// void cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
-// {
-//   vx = msg->linear.x;
-//   vy = msg->linear.y;
-//   vth = msg->angular.z;
-// }
-
-void jointVelCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
+void cmdVelCallback(const geometry_msgs::msg::Twist::SharedPtr msg)
 {
-    left_wheel_est_vel = msg->velocity[0];
-    right_wheel_est_vel = msg->velocity[2];
+  vx = msg->linear.x;
+  vy = msg->linear.y;
+  vth = msg->angular.z;
 }
+
+// void jointVelCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
+// {
+//     left_wheel_est_vel = msg->velocity[0];
+//     right_wheel_est_vel = msg->velocity[2];
+// }
 
 int main(int argc, char** argv){
   rclcpp::init(argc, argv);
@@ -40,11 +42,11 @@ int main(int argc, char** argv){
   auto odom_pub = node->create_publisher<nav_msgs::msg::Odometry>("odom", 50);
   tf2_ros::TransformBroadcaster odom_broadcaster(node);
 
-  // auto cmd_vel_sub = node->create_subscription<geometry_msgs::msg::Twist>(
-  //   "/mobile_base_controller/cmd_vel_unstamped", 10, cmdVelCallback);
+  auto cmd_vel_sub = node->create_subscription<geometry_msgs::msg::Twist>(
+    "/mobile_base_controller/cmd_vel_unstamped", 10, cmdVelCallback);
 
-    auto joint_vel_sub = node->create_subscription<sensor_msgs::msg::JointState>(
-    "/joint_states", 10, jointVelCallback);
+    // auto joint_vel_sub = node->create_subscription<sensor_msgs::msg::JointState>(
+    // "/joint_states", 10, jointVelCallback);
 
   double x = 0.0;
   double y = 0.0;
@@ -61,12 +63,13 @@ int main(int argc, char** argv){
 
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).seconds();
-    double linear = (right_wheel_est_vel + left_wheel_est_vel) / 2;
-    double angular = (right_wheel_est_vel - left_wheel_est_vel) / wheel_separation;
-
-    double delta_x = linear * cos(th)  * dt;
-    double delta_y = linear * sin(th)  * dt;
-    double delta_th = angular * dt;
+    // double linear = (right_wheel_est_vel + left_wheel_est_vel) / 2;
+    // double angular = (right_wheel_est_vel - left_wheel_est_vel) / wheel_separation;
+    // double delta_x = linear * cos(th)  * dt;
+    // double delta_y = linear * sin(th)  * dt;
+    double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
+    double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
+    double delta_th = vth * dt;
 
     x += delta_x;
     y += delta_y;
@@ -104,15 +107,15 @@ int main(int argc, char** argv){
     odom.pose.pose.orientation = odom_quat;
 
     //set the velocity
-    odom.child_frame_id = "base_link";
-    odom.twist.twist.linear.x = linear;
-    odom.twist.twist.linear.y = 0;
-    odom.twist.twist.angular.z = vth;
-
     // odom.child_frame_id = "base_link";
-    // odom.twist.twist.linear.x = vx;
-    // odom.twist.twist.linear.y = vy;
+    // odom.twist.twist.linear.x = linear;
+    // odom.twist.twist.linear.y = 0;
     // odom.twist.twist.angular.z = vth;
+
+    odom.child_frame_id = "base_link";
+    odom.twist.twist.linear.x = vx;
+    odom.twist.twist.linear.y = vy;
+    odom.twist.twist.angular.z = vth;
 
     //publish the message
     odom_pub->publish(odom);

@@ -98,14 +98,23 @@
   <xacro:wheel prefix="drivewhl_l_front" x_reflect="1" y_reflect="1" />
   <xacro:wheel prefix="drivewhl_r_front" x_reflect="1" y_reflect="-1" />
 
-  <!-- Map Frame
+  <!-- Odom Frame -->
+  <link name="odom"/>
+
+  <joint name="odom_joint" type="fixed">
+    <parent link="odom"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+   <!-- Map Frame -->
   <link name="map"/>
 
   <joint name="map_joint" type="fixed">
-    <parent link="map"/>
-    <child link="base_link"/>
+    <parent link="base_link"/>
+    <child link="map"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint> -->
+  </joint>
 
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
@@ -242,34 +251,6 @@
       </linear_acceleration>
     </imu>
   </sensor>
-</gazebo>
-
-<gazebo>
-  <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
-    <ros>
-      <namespace>/demo</namespace>
-    </ros>
-
-    <!-- wheels -->
-    <left_joint>drivewhl_l_joint</left_joint>
-    <right_joint>drivewhl_r_joint</right_joint>
-
-    <!-- kinematics -->
-    <wheel_separation>0.4</wheel_separation>
-    <wheel_diameter>0.2</wheel_diameter>
-
-    <!-- limits -->
-    <max_wheel_torque>20</max_wheel_torque>
-    <max_wheel_acceleration>1.0</max_wheel_acceleration>
-
-    <!-- output -->
-    <publish_odom>true</publish_odom>
-    <publish_odom_tf>false</publish_odom_tf>
-    <publish_wheel_tf>true</publish_wheel_tf>
-
-    <odometry_frame>odom</odometry_frame>
-    <robot_base_frame>base_link</robot_base_frame>
-  </plugin>
 </gazebo>
 
 </robot>
