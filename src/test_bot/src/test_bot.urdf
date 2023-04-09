@@ -107,15 +107,6 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
 
-   <!-- Map Frame -->
-  <link name="map"/>
-
-  <joint name="map_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="map"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
-
 <ros2_control name="GazeboSystem" type="system">
   <hardware>
     <plugin>gazebo_ros2_control/GazeboSystem</plugin>
